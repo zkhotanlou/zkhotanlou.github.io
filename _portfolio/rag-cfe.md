@@ -1,6 +1,6 @@
 ---
 title: "RAG-CFE: Retrieval-Augmented LLMs for Counterfactual Explanations"
-excerpt: "An end-to-end RAG framework combining DiCE-generated counterfactual candidates with LLM-based refinement to improve the feasibility and plausibility of recourse recommendations.<br/><img src='/images/500x300.png'>"
+excerpt: "An end-to-end RAG framework combining DiCE-generated counterfactual candidates with LLM-based refinement to improve the feasibility and plausibility of recourse recommendations."
 collection: portfolio
 ---
 

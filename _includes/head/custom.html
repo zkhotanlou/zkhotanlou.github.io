@@ -16,7 +16,29 @@
 <link rel="icon" type="image/png" href="{{ base_path }}/images/favicon-32x32.png" sizes="32x32"/>
 <link rel="icon" type="image/png" href="{{ base_path }}/images/favicon-192x192.png" sizes="192x192"/>
 <link rel="manifest" href="{{ base_path }}/images/manifest.json"/>
-<link rel="icon" href="/images/favicon.ico"/>
-<meta name="theme-color" content="var(--global-bg-color)"/>
+<link rel="icon" href="{{ base_path }}/images/favicon.ico"/>
+
+<!-- theme-color only accepts a literal colour; a var() reference here was ignored -->
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)"/>
+<meta name="theme-color" content="#1b1b1b" media="(prefers-color-scheme: dark)"/>
+
+<!-- Speculation Rules: prerender same-site pages once a link is hovered or
+     touched, so moving between tabs lands on an already-rendered page instead
+     of visibly reloading. Ignored by browsers that don't support it. -->
+<script type="speculationrules">
+{
+  "prerender": [{
+    "where": {
+      "and": [
+        { "href_matches": "/*" },
+        { "not": { "href_matches": "/files/*" } },
+        { "not": { "href_matches": "/assets/files/*" } },
+        { "not": { "selector_matches": "[rel~=nofollow]" } }
+      ]
+    },
+    "eagerness": "moderate"
+  }]
+}
+</script>
 
 <!-- end custom head snippets -->

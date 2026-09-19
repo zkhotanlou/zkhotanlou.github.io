@@ -2,10 +2,9 @@
    BASE ELEMENTS
    ========================================================================== */
 html {
-  /* sticky footer fix */
   position: relative;
   min-height: 100%;
-  
+
   scroll-behavior: smooth;
 }
 
@@ -15,10 +14,19 @@ body {
   background-color: var(--global-bg-color);
 
   margin: 0;
+  /* Top padding clears the fixed masthead. No bottom padding: the footer is in
+     normal flow now, so nothing needs to be reserved for it. */
   padding: $masthead-height 0 0;
-  padding-bottom: 9em;
   font-family: $global-font-family;
   line-height: 1.5;
+
+  /* Sticky footer, pure CSS. The column flex context lets .page__footer use
+     `margin-top: auto` to sit at the bottom of the viewport on short pages
+     without being pinned there with `position: fixed`. */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh; /* avoids the mobile URL-bar jump where supported */
 
   &.overflow--hidden {
     /* when primary navigation is visible, the content in the background won't scroll */

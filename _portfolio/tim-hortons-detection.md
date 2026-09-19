@@ -1,6 +1,6 @@
 ---
 title: "Tim Hortons Cup Object Detection Pipeline"
-excerpt: "An end-to-end detection pipeline achieving 95.4% image-level accuracy and F1 = 0.967, with real-time drift monitoring.<br/><img src='/images/500x300.png'>"
+excerpt: "An end-to-end detection pipeline achieving 95.4% image-level accuracy and F1 = 0.967, with real-time drift monitoring."
 collection: portfolio
 ---
 

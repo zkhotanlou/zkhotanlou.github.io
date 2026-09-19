@@ -27,10 +27,11 @@ function determineComputedTheme() {
 
 // Set the theme on page load or when explicitly called
 function setTheme(theme) {
-  const use_theme = theme ||
-    localStorage.getItem("theme") ||
-    $("html").attr("data-theme") ||
-    browserPref;
+  // NOTE: fall back to determineComputedTheme(), which always returns the
+  // string "dark" or "light". The previous fallback chain ended at the boolean
+  // browserPref, so neither branch below matched and an OS dark-mode
+  // preference was silently ignored on first visit.
+  const use_theme = theme || determineComputedTheme();
 
   if (use_theme === "dark") {
     $("html").attr("data-theme", "dark");
@@ -155,21 +156,10 @@ $(document).ready(function () {
   // Enable the theme toggle
   $('#theme-toggle').on('click', toggleTheme);
 
-  // Enable the sticky footer
-  var bumpIt = function () {
-    $("body").css("padding-bottom", "0");
-    $("body").css("margin-bottom", $(".page__footer").outerHeight(true));
-  }
-  $(window).resize(function () {
-    didResize = true;
-  });
-  setInterval(function () {
-    if (didResize) {
-      didResize = false;
-      bumpIt();
-    }}, 250);
-  var didResize = false;
-  bumpIt();
+  // NOTE: the sticky footer is pure CSS now (`body` is a flex column and
+  // `.page__footer` uses `margin-top: auto` — see _sass/layout/_base.scss and
+  // _sass/layout/_footer.scss). The old JS measured the fixed footer and
+  // reserved that much space at the bottom of every page on a 250ms interval.
 
   // Follow menu drop down
   $(".author__urls-wrapper button").on("click", function () {

@@ -9,7 +9,28 @@ redirect_from:
 
 {% include base_path %}
 
-A PDF version of this CV is available [here](/files/Zahra_Khotanlou_CV.pdf). <!-- PLACEHOLDER: upload your CV PDF to /files/ and update this filename -->
+{% comment %}
+  Drop your CV PDF into files/ (the conventional spot in this template) and the
+  download line below appears on its own. The filename does not matter as long
+  as it contains "cv" or "resume"; assets/files/ is picked up too. If no such
+  PDF is present the sentence is skipped, so the page never shows a dead link.
+{% endcomment %}
+{% assign cv_pdf = nil %}
+{% for static_file in site.static_files %}
+  {% if static_file.extname == ".pdf" %}
+    {% assign cv_dir = static_file.path | remove: static_file.name %}
+    {% if cv_dir == "/files/" or cv_dir == "/assets/files/" %}
+      {% assign cv_name = static_file.name | downcase %}
+      {% if cv_name contains "cv" or cv_name contains "resume" %}
+        {% assign cv_pdf = static_file %}
+        {% break %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
+{% endfor %}
+{% if cv_pdf %}
+A PDF version of this CV is available [here]({{ cv_pdf.path | prepend: base_path }}).
+{% endif %}
 
 Education
 ======

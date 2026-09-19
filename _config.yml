@@ -34,13 +34,12 @@ author:
   # Academic websites
   academia         : # URL
   arxiv            : # URL - Update with the correct link to your profile
-  googlescholar    : # PLACEHOLDER — paste your Google Scholar profile URL here
+  googlescholar    : "https://scholar.google.com/citations?user=WwpW22sAAAAJ&hl=en"
   inspire-hep      : # URL
   impactstory      : # URL
-  orcid            : "https://orcid.org/yourorcidurl"
   semantic         : # URL
   ssrn             : # URL
-  pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
+  pubmed           : # URL
   researchgate     : # URL
   scopus           : # URL
   zotero           : # URL
@@ -56,7 +55,7 @@ author:
 
   # Social media
   artstation       : # Username
-  bluesky          : "bsky.app" # Replace this with you Bluesky username
+  bluesky          : # Username - e.g. "yourname.bsky.social"
   facebook         : # Username
   flickr           : # Username
   foursquare       : # Username
@@ -96,7 +95,7 @@ breadcrumbs              : false # true, false (default)
 words_per_minute         : 160
 future                   : true
 read_more                : "disabled" # if enabled, adds "Read more" links to excerpts
-talkmap_link             : false      #change to true to add link to talkmap on talks page
+talkmap_link             : false      # the talkmap page was removed; see the note in _pages/talks.html
 comments:
   provider               : # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "custom"
   disqus:
@@ -124,7 +123,7 @@ staticman:
       options:
         format           : "iso8601" # "iso8601" (default), "timestamp-seconds", "timestamp-milliseconds"
 atom_feed:
-  hide                   : false     # change to true to hide the RSS feed in the footer
+  hide                   : true      # no blog posts on this site, so the feed would be empty
   path                   : # blank (default) uses feed.xml
 
 
@@ -142,8 +141,8 @@ facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 :  # Social media default site image
-og_description           :  # Social media default site image description
+og_image                 : "profile.png" # Social media default site image, relative to /images/
+og_description           : *description   # Social media default description
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
@@ -187,10 +186,23 @@ exclude:
   - log
   - node_modules
   - package.json*
+  - package-lock.json
   - Rakefile
   - README
   - tmp
   - vendor
+  # Repo tooling and docs: present in git, but they should not be served as
+  # downloadable files on the live site.
+  - .devcontainer
+  - AGENTS.md
+  - README.md
+  - _config_docker.yml
+  - docker-compose.yaml
+  - markdown_generator
+  - scripts
+  - talkmap.ipynb
+  - talkmap.py
+  - talkmap_out.ipynb
 keep_files:
   - .git
   - .svn

@@ -25,7 +25,7 @@ Building an uncertainty-aware Bayesian model for value alignment, working with P
 
 Previously
 ======
-My MASc research, in the CHARM Lab under Prof. Amir-Hossein Karimi, focused on algorithmic recourse — when an AI system denies someone a loan or a job, what should they be told to do differently, and what happens when many people are competing for the same limited outcomes. That work is published at ACM FAccT 2026 and was also presented at the NeurIPS Workshop on Algorithmic Collective Action and at Remarkable 2026 (Vector Institute). I also built [RecourseBench](/publications/), a reproducible benchmarking platform spanning 22 methods and 137 configurations.
+My MASc research, in the CHARM Lab under Prof. Amir-Hossein Karimi, focused on algorithmic recourse — when an AI system denies someone a loan or a job, what should they be told to do differently, and what happens when many people are competing for the same limited outcomes. That work is published at [ACM FAccT 2026](https://dl.acm.org/doi/abs/10.1145/3805689.3812327) and was also presented at the [NeurIPS Workshop on Algorithmic Collective Action](https://neurips.cc/virtual/2025/loc/san-diego/129474) and at Remarkable 2026 (Vector Institute). I also built [RecourseBench](/publications/), a reproducible benchmarking platform spanning 22 methods and 137 configurations.
 
 Before Waterloo, I worked on protein toxicity prediction (ToxTrans, awarded Best B.Sc. Thesis at Shahid Beheshti University) and built production search and ETL systems as a software engineer.
 

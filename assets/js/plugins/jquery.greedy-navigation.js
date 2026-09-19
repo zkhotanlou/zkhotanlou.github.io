@@ -74,9 +74,18 @@ function updateNav() {
 $(window).on('resize', function () {
   updateNav();
 });
-screen.orientation.addEventListener("change", function () {
-  updateNav();
-});
+// Guarded: screen.orientation is missing on older iOS/Safari. This file is
+// concatenated ahead of _main.js in main.min.js, so an unguarded throw here
+// also took out the theme toggle and the sidebar "Follow" menu.
+if (screen.orientation && screen.orientation.addEventListener) {
+  screen.orientation.addEventListener("change", function () {
+    updateNav();
+  });
+} else {
+  $(window).on("orientationchange", function () {
+    updateNav();
+  });
+}
 
 $btn.on('click', function () {
   $hlinks.toggleClass('hidden');

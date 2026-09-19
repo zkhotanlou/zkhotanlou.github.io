@@ -5,11 +5,13 @@ permalink: /talks/
 author_profile: true
 ---
 
-{% if site.talkmap_link == true %}
-
-<p style="text-decoration:underline;"><a href="/talkmap.html">See a map of all the places I've given a talk!</a></p>
-
-{% endif %}
+{% comment %}
+  The talk-map feature was removed because the checked-in map under /talkmap/
+  was still the template's sample data ("Talk 2 on Relevant Topic in Your
+  Field", London School of Testing, ...). talkmap.py and talkmap.ipynb are still
+  in the repo: run the notebook to regenerate /talkmap/ from the real _talks/
+  entries, then restore _pages/talkmap.html and a link here.
+{% endcomment %}
 
 {% for post in site.talks reversed %}
   {% include archive-single-talk.html %}
