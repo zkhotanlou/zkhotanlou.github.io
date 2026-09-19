@@ -17,8 +17,11 @@ main:
   - title: "Teaching"
     url: /teaching/    
     
-  - title: "Portfolio"
+  - title: "Projects"
     url: /portfolio/
 
+  # Direct download rather than a page. The file must exist at exactly this
+  # path or the tab 404s; target opens it in a new tab so the site stays put.
   - title: "CV"
-    url: /cv/
+    url: /files/Zahra_Khotanlou_CV.pdf
+    target: _blank
