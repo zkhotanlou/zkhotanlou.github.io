@@ -18,10 +18,25 @@
   }
 
   @media screen and (min-width: $sidebar-screen-min-width) {
-    height: 100vh;
-    overflow-y: auto;               // Add scrollbar if the sidebar is too long
     position: fixed;
-    padding-top: $masthead-height;
+
+    /* Anchor to the masthead and take exactly the remaining viewport height.
+       Previously this was `height: 100vh` with no `top`, so the box started at
+       its static position (~2em below the masthead) and then ran a further
+       100vh, pushing the last ~100px of links below the fold where they could
+       only be reached by scrolling the sidebar itself.
+
+       --masthead-height is republished by the greedy-nav script on every
+       resize, because the masthead grows when the nav wraps to two rows. The
+       literal fallback keeps this correct before that script runs. */
+    top: var(--masthead-height, #{$masthead-height});
+    height: calc(100vh - var(--masthead-height, #{$masthead-height}));
+
+    overflow-y: auto;               // Add scrollbar if the sidebar is too long
+
+    /* 2em matches #main's margin-top, so the avatar lines up with the page title */
+    padding-top: 2em;
+    padding-bottom: 2em;
   }
 
   @include breakpoint($large) {
@@ -319,6 +334,36 @@
 
     &:hover {
       text-decoration: underline;
+    }
+  }
+}
+
+/* The fixed sidebar is a 2-of-12 grid span, roughly 155px between 1024px and
+   1280px, which is narrower than entries like "Toronto, Ontario, Canada" or a
+   university name. `white-space: nowrap` above meant those were clipped rather
+   than wrapped, because `overflow-y: auto` on .sidebar forces overflow-x to
+   `auto` too. Let them wrap here, and lay each row out as a flex line so the
+   second line indents under the text instead of under the icon.
+
+   Scoped to the fixed-sidebar width on purpose: below this, .author__urls is
+   either full width or a popover menu, where nowrap still reads better. */
+@media screen and (min-width: $sidebar-screen-min-width) {
+  .sidebar .author__urls {
+    overflow-wrap: break-word;
+
+    li {
+      white-space: normal;
+    }
+
+    li,
+    a {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .icon-pad-right {
+      flex: 0 0 auto;
+      margin-top: 0.15em;
     }
   }
 }

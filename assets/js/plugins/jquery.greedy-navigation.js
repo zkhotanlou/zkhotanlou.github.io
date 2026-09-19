@@ -58,14 +58,15 @@ function updateNav() {
   // Keep counter updated
   $btn.attr("count", breaks.length);
 
-  // update masthead height and the body/sidebar top padding
+  // Publish the measured masthead height for CSS. The masthead grows when the
+  // nav wraps to a second row, and both the body offset and the fixed sidebar
+  // have to track it. The sidebar now derives its `top` and `height` from this
+  // variable in _sidebar.scss, so this no longer sets padding on .sidebar:
+  // doing both produced the masthead offset twice and pushed the bottom links
+  // off the screen.
   var mastheadHeight = $('.masthead').height();
+  document.documentElement.style.setProperty('--masthead-height', mastheadHeight + 'px');
   $('body').css('padding-top', mastheadHeight + 'px');
-  if ($(".author__urls-wrapper button").is(":visible")) {
-    $(".sidebar").css("padding-top", "");
-  } else {
-    $(".sidebar").css("padding-top", mastheadHeight + "px");
-  }
 
 }
 
